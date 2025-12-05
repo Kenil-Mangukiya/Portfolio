@@ -1,22 +1,27 @@
 import { motion } from 'framer-motion';
-import { Code, MessageCircle, ShoppingCart, BriefcaseBusiness, GraduationCap } from 'lucide-react';
+import { Code, MessageCircle, ShoppingCart, BriefcaseBusiness, GraduationCap, Cloud } from 'lucide-react';
 
 const About = () => {
   const highlightCards = [
     {
       icon: Code,
       title: 'MERN Stack Expertise',
-      description: 'Building scalable full-stack applications with MongoDB, Express, React, and Node.js.',
+      description: 'Building scalable full-stack applications using MongoDB, Express, React, and Node.js. Specializing in clean architecture, reusable component design, and optimized backend logic. Delivering high-performance, modern web solutions tailored for real-world business needs.',
     },
     {
       icon: MessageCircle,
       title: 'AI & Voice Agent Systems',
-      description: 'Developing intelligent automation and voice-driven systems powered by AI technologies.',
+      description: 'Developing intelligent automation, conversational agents, and voice-driven systems using advanced AI technologies. Integrating LLMs, workflow engines, and real-time APIs to create seamless automated experiences. Helping businesses scale operations faster with human-like automation and smart decision-making.',
     },
     {
       icon: ShoppingCart,
       title: 'E-Commerce & Product Development',
-      description: 'Creating complete e-commerce solutions with high-performance architecture.',
+      description: 'Creating complete e-commerce solutions with secure architecture, smooth UX, and scalable backend systems. Implementing payment integrations, product management, and optimized checkout flows. Delivering fast, reliable, end-to-end platforms that support business growth and customer engagement.',
+    },
+    {
+      icon: Cloud,
+      title: 'Cloud Development & DevOps',
+      description: 'Deploying production-grade applications using DigitalOcean, GoDaddy, NGINX, PM2, and cloud best practices. Setting up SSL, reverse proxies, CI/CD pipelines, and robust server management for high uptime. Ensuring smooth, scalable, and secure deployments built for real-world enterprise environments.',
     },
   ];
 
@@ -53,7 +58,6 @@ const About = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.22,
-        ease: "easeOut",
         duration: 0.8,
       },
     },
@@ -64,7 +68,7 @@ const About = () => {
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.8 },
     },
   };
 
@@ -79,10 +83,10 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-8 max-w-[580px]"
+            className="space-y-8 pb-8 lg:pb-12"
           >
-            {/* Section Title */}
-            <div>
+            {/* Section Title + reduced-width text block */}
+            <div className="max-w-[85%] lg:max-w-[580px]">
               <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-900 mb-6">
                 About Me
               </h2>
@@ -91,8 +95,14 @@ const About = () => {
               </p>
             </div>
 
-            {/* Highlight Cards */}
-            <div className="space-y-4 mt-6">
+            {/* Highlight Cards - consistent spacing, padding and staggered animation */}
+            <motion.div
+              className="mt-6 space-y-6"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              transition={{ staggerChildren: 0.12 }}
+            >
               {highlightCards.map((card, index) => {
                 const Icon = card.icon;
                 return (
@@ -101,8 +111,8 @@ const About = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    whileHover={{ y: -5, scale: 1.02 }}
+                    transition={{ duration: 0.6, delay: index * 0.12 }}
+                    whileHover={{ y: -4, scale: 1.02 }}
                     className="flex items-start gap-4 p-5 bg-white dark:bg-white rounded-xl border border-neutral-200 dark:border-neutral-300 shadow-sm hover:shadow-lg transition-all duration-300"
                   >
                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
@@ -112,14 +122,14 @@ const About = () => {
                       <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-900 mb-1">
                         {card.title}
                       </h3>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-600 leading-relaxed">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-600 leading-relaxed whitespace-pre-line">
                         {card.description}
                       </p>
                     </div>
                   </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* RIGHT COLUMN: Experience Timeline */}
@@ -131,14 +141,14 @@ const About = () => {
             className="relative"
           >
             {/* Career Journey Subtitle */}
-            <div className="pl-12 mb-6">
+            <div className="pl-12 mb-4 mt-8">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                 Career Journey
               </h3>
             </div>
 
             {/* Vertical line on the left */}
-            <div className="absolute left-4 top-12 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700"></div>
+            <div className="absolute left-4 top-24 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700"></div>
 
             {/* Timeline items with stagger animation */}
             <motion.div
