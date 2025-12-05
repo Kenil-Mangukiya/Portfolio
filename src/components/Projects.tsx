@@ -27,7 +27,7 @@ const Projects = () => {
               whileHover={{ y: -10 }}
               className="bg-white dark:bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden border border-neutral-200 dark:border-neutral-300"
             >
-              <div className="relative h-48 bg-neutral-200 dark:bg-neutral-300 overflow-hidden">
+              <div className="relative h-56 md:h-64 lg:h-72 bg-neutral-200 dark:bg-neutral-300 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
