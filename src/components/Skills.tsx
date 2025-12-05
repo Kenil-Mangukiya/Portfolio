@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { skills as allSkills, Skill } from '../data/skills';
+import { skills as allSkills, Skill } from '../data/skills.tsx';
 
 const categoryDefinitions: {
   title: string;
@@ -12,7 +12,6 @@ const categoryDefinitions: {
       { name: 'Next.js', tooltip: 'Server-side rendering & hybrid apps' },
       { name: 'TailwindCSS', tooltip: 'Utility-first responsive styling' },
       { name: 'ShadCN UI', tooltip: 'Design system + components' },
-      { name: 'Socket.io', tooltip: 'Real-time communication' },
     ],
   },
   {
@@ -22,6 +21,7 @@ const categoryDefinitions: {
       { name: 'Express.js', tooltip: 'Fast, minimal web servers' },
       { name: 'MongoDB', tooltip: 'Document DB for flexible schemas' },
       { name: 'MySQL', tooltip: 'Relational data storage' },
+      { name: 'Socket.io', tooltip: 'Real-time bi-directional communication' },
     ],
   },
   {
@@ -76,23 +76,24 @@ const SkillCard: React.FC<{
     >
       <div className="group">
         <div
-          className="flex flex-col items-center gap-2 p-4 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 shadow-sm hover:shadow-lg transform transition-all duration-300 ease-out hover:scale-105 cursor-default"
+          className="flex flex-col items-center gap-2 p-4 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 shadow-sm transform transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl cursor-default"
           aria-describedby={`tooltip-${name.replace(/\s+/g, '-')}`}
         >
-          <Icon className="text-3xl text-neutral-700 dark:text-neutral-300" />
+          <Icon className="text-3xl text-neutral-700 dark:text-neutral-300 dark:filter dark:brightness-110 group-hover:brightness-110 dark:group-hover:brightness-125" />
           <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300 text-center">
             {name}
           </span>
         </div>
 
-        {/* simple tooltip */}
+        {/* Premium TooltipContent-like element positioned above card */}
         {tooltip ? (
           <div
             id={`tooltip-${name.replace(/\s+/g, '-')}`}
             role="tooltip"
-            className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-[calc(100%+12px)] opacity-0 group-hover:opacity-100 transition-all duration-200"
+            style={{ zIndex: 60 }}
           >
-            <div className="bg-neutral-900 text-white text-xs px-3 py-1 rounded-md shadow-md">
+            <div className="rounded-lg px-3 py-2 text-sm font-medium bg-neutral-900 text-white shadow-xl animate-in fade-in zoom-in-95 duration-200">
               {tooltip}
             </div>
           </div>
