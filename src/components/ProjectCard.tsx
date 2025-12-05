@@ -17,10 +17,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       whileHover={{ scale: 1.01, y: -5 }}
       className="relative group"
     >
-      {/* Neon Glow Bar */}
-      <div
-        className={`absolute -left-2 top-0 h-full w-1 rounded-full bg-gradient-to-b ${project.glow} blur-[2px] shadow-lg`}
-      />
 
       {/* Card Container */}
       <div className="relative rounded-2xl shadow-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
