@@ -1,6 +1,6 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Linkedin, Github, Mail, MessageCircle } from 'lucide-react';
+import { Send, Linkedin, Github, Mail, MessageCircle, X } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,13 +9,37 @@ const Contact = () => {
     message: '',
   });
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add form submission logic here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-    alert('Thank you for your message! I will get back to you soon.');
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log('Form submitted:', formData);
+      setToast({ message: 'Message sent successfully!', type: 'success' });
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setToast(null), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -23,13 +47,16 @@ const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: '' });
+    }
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Mail, href: 'mailto:kenil@example.com', label: 'Email' },
-    { icon: MessageCircle, href: 'https://wa.me/1234567890', label: 'WhatsApp' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/kenil-mangukiya-579a40363/', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/Kenil-Mangukiya', label: 'GitHub' },
+    { icon: Mail, href: 'mailto:kenil.mangukiya.work@gmail.com', label: 'Email' },
+    { icon: MessageCircle, href: 'https://wa.me/919904665554', label: 'WhatsApp' },
   ];
 
   return (
@@ -40,23 +67,23 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-900 mb-12 text-center"
+          className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-900 mb-12"
         >
           Contact Me
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Contact Form (Left) - Slides from left */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-neutral-700 dark:text-neutral-700 mb-2">
-                  Name
+                  Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -64,15 +91,17 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-400 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white dark:bg-white text-neutral-900 dark:text-neutral-900"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white dark:bg-white text-neutral-900 dark:text-neutral-900 ${
+                    errors.name ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-400'
+                  }`}
                   placeholder="Your Name"
                 />
+                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-700 mb-2">
-                  Email
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
@@ -80,26 +109,30 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-400 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white dark:bg-white text-neutral-900 dark:text-neutral-900"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white dark:bg-white text-neutral-900 dark:text-neutral-900 ${
+                    errors.email ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-400'
+                  }`}
                   placeholder="your.email@example.com"
                 />
+                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-neutral-700 dark:text-neutral-700 mb-2">
-                  Message
+                  Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   rows={6}
-                  className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-400 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white dark:bg-white text-neutral-900 dark:text-neutral-900 resize-none"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white dark:bg-white text-neutral-900 dark:text-neutral-900 resize-none ${
+                    errors.message ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-400'
+                  }`}
                   placeholder="Your message..."
                 />
+                {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
               </div>
 
               <motion.button
@@ -114,13 +147,13 @@ const Contact = () => {
             </form>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Let's Connect Section (Right) - Slides from right */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col justify-center space-y-6"
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="flex flex-col justify-center mb-10"
           >
             <div>
               <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-900 mb-4">
@@ -132,35 +165,48 @@ const Contact = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              {socialLinks.map((social, index) => {
+              {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
-                  <motion.a
+                  <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.4 }}
-                    whileHover={{ scale: 1.05, y: -5 }}
                     className="flex items-center gap-3 p-4 border border-neutral-300 dark:border-neutral-400 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-100 transition-colors bg-white dark:bg-white"
                   >
                     <Icon className="w-6 h-6 text-primary-600 dark:text-primary-600" />
                     <span className="font-medium text-neutral-700 dark:text-neutral-700">
                       {social.label}
                     </span>
-                  </motion.a>
+                  </a>
                 );
               })}
             </div>
           </motion.div>
         </div>
+
+        {/* Toast Notification */}
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className={`fixed bottom-6 right-6 flex items-center gap-3 px-6 py-4 rounded-lg shadow-lg ${
+              toast.type === 'success'
+                ? 'bg-green-500 text-white'
+                : 'bg-red-500 text-white'
+            }`}
+          >
+            <span>{toast.message}</span>
+            <button onClick={() => setToast(null)} className="ml-2">
+              <X size={18} />
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
 };
 
 export default Contact;
-
