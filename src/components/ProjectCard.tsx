@@ -21,7 +21,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       {/* Card Container */}
       <div className="relative rounded-2xl shadow-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
         {/* Image */}
-        <div className="relative w-full h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden shadow-sm mb-4 bg-neutral-200 dark:bg-neutral-800">
+        <div className="relative w-full h-64 md:h-72 lg:h-80 rounded-xl overflow-hidden shadow-sm mb-4 bg-neutral-100">
           <img
             src={project.image}
             alt={project.title}

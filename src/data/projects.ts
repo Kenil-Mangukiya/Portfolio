@@ -11,7 +11,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: 'Real-Time Chat App',
-    image: '/chat-app.png',
+    image: '/test1.png',
     description:
       'A high-performance real-time messaging platform built with Next.js and Socket.io, featuring live chat synchronization, authentication, responsive UI components, and scalable backend architecture powered by Node.js, Express.js, MongoDB, TailwindCSS, and ShadCN.',
     tech: ['Next.js', 'Node.js', 'Express.js', 'Socket.io', 'MongoDB', 'TailwindCSS', 'ShadCN'],

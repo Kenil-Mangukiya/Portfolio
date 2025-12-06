@@ -12,7 +12,7 @@ const Hero = () => {
       className="bg-gradient-to-b from-white to-[#f9fbff] py-12 md:py-16"
     >
       {/* FIXED WIDTH */}
-      <div className="max-w-[1450px] mx-auto mt-10 px-4 md:px-8 h-full">
+      <div className="max-w-[1450px] mx-auto mt-12 px-4 md:px-8 h-full">
 
         {/* FIX: Expanded left column → 60% / 40% layout */}
         <div className="grid md:grid-cols-[60%_40%] gap-10 items-center pt-6">
