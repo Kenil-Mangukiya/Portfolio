@@ -73,7 +73,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="pt-3  bg-white dark:bg-neutral-50">
+    <section id="expertise" className="pt-3  bg-white dark:bg-neutral-50">
       <div className="max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Two-column responsive grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -88,11 +88,8 @@ const About = () => {
             {/* Section Title + reduced-width text block */}
             <div className="max-w-[85%] lg:max-w-[580px]">
               <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-900 mb-6">
-                About Me
+                Expertise & Experience
               </h2>
-              <p className="text-lg text-neutral-700 dark:text-neutral-700 leading-relaxed">
-                I'm a Full-Stack MERN Developer with expertise in AI automation, voice-driven intelligent systems, and end-to-end e-commerce product development. I specialize in building scalable digital solutions, real-time applications, and automation-driven workflows that help businesses operate faster and smarter.
-              </p>
             </div>
 
             {/* Highlight Cards - consistent spacing, padding and staggered animation */}
