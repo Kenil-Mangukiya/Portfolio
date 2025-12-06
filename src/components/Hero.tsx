@@ -1,25 +1,21 @@
 ﻿import { motion } from 'framer-motion';
-import { Download, Mail } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 const Hero = () => {
   const handleDownloadResume = () => {
     window.open('/resume.pdf', '_blank');
   };
 
-  const handleContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section id="home" className="bg-gradient-to-br from-white to-slate-50 py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+    <section id="home" className="bg-gradient-to-b from-white to-[#f9fbff] py-6 md:py-8">
+      <div className="max-w-[1350px] mx-auto px-4 md:px-6 h-full">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center min-h-[420px] md:min-h-[500px]">
           {/* Left: Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-2 md:space-y-3"
           >
             {/* Tag Badge */}
             <motion.div
@@ -53,14 +49,17 @@ const Hero = () => {
               Full-Stack MERN Developer | AI Automation, Voice Agents & E-Commerce Solutions
             </motion.p>
             
-            {/* Description */}
+            {/* Description - Expanded with more details */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-base text-neutral-600 leading-relaxed"
+              className="text-sm md:text-base text-neutral-600 leading-relaxed max-w-2xl pt-1 space-y-3"
             >
-              I build intelligent AI-powered applications, real-time experiences, voice-driven automation systems, and scalable full-stack solutions.
+              I'm a Full-Stack MERN Developer with 1 year of real-world experience building intelligent AI-powered applications, real-time messaging platforms, and automation-driven systems. I specialize in scalable backend architectures, modern frontend interfaces, and cloud technologies—focused on delivering fast, reliable, high-performance digital products.
+              <br />
+              <br />
+              I also work extensively with AI automation, voice-driven solutions, and integration workflows that help businesses operate smarter. My goal is to create clean, efficient systems that scale effortlessly and provide meaningful user experiences.
             </motion.p>
             
             {/* Buttons */}
@@ -68,7 +67,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex flex-wrap gap-4 pt-2"
+              className="flex flex-wrap gap-3 pt-1"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -79,16 +78,6 @@ const Hero = () => {
                 <Download size={20} />
                 Download Resume
               </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleContact}
-                className="flex items-center gap-2 px-6 py-3 border-2 border-neutral-300 hover:border-neutral-400 text-neutral-900 rounded-lg font-medium transition-colors hover:bg-neutral-50"
-              >
-                <Mail size={20} />
-                Contact Me
-              </motion.button>
             </motion.div>
           </motion.div>
 
@@ -97,7 +86,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="flex justify-center md:justify-end"
+            className="flex justify-center md:justify-center items-center"
           >
             <motion.div
               animate={{
@@ -108,37 +97,39 @@ const Hero = () => {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="relative"
+              className="relative flex items-center justify-center overflow-visible"
             >
               {/* Circular Glow (Hidden on mobile) */}
-              <div className="hidden md:block absolute inset-0 w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-blue-200/40 to-slate-200/20 blur-3xl -z-10 translate-x-6 translate-y-6" />
+              <div className="hidden md:block absolute inset-0 w-[560px] h-[560px] rounded-full bg-gradient-to-br from-blue-200/40 to-slate-200/20 blur-3xl -z-10 translate-x-4 translate-y-4" />
 
-              {/* Profile Image Circle */}
-              <div className="w-72 h-72 md:w-96 md:h-96 rounded-full bg-white shadow-lg border-4 border-slate-100 overflow-hidden">
-                <img
-                  src="/mine-2.png"
-                  alt="Kenil Mangukiya"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = 400;
-                    canvas.height = 400;
-                    const ctx = canvas.getContext('2d');
-                    if (ctx) {
-                      const gradient = ctx.createLinearGradient(0, 0, 400, 400);
-                      gradient.addColorStop(0, '#e0f2fe');
-                      gradient.addColorStop(1, '#f1f5f9');
-                      ctx.fillStyle = gradient;
-                      ctx.fillRect(0, 0, 400, 400);
-                      ctx.fillStyle = '#0ea5e9';
-                      ctx.font = 'bold 80px Arial';
-                      ctx.textAlign = 'center';
-                      ctx.textBaseline = 'middle';
-                      ctx.fillText('KM', 200, 200);
-                      (e.target as HTMLImageElement).src = canvas.toDataURL();
-                    }
-                  }}
-                />
+              {/* Profile Image Circle with premium ring - increased size, no crop */}
+              <div className="relative rounded-full p-2 md:p-4 bg-gradient-to-br from-[#ffffff] via-[#cce7ff] to-[#ffffff] shadow-[0_10px_40px_rgba(0,0,0,0.12)] w-80 h-80 md:w-[560px] md:h-[560px] overflow-hidden flex items-center justify-center flex-shrink-0">
+                <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-cyan-100 to-blue-100 flex items-center justify-center">
+                  <img
+                    src="/mine-2.png"
+                    alt="Kenil Mangukiya"
+                    className="w-full h-full object-cover object-top"
+                    onError={(e) => {
+                      const canvas = document.createElement('canvas');
+                      canvas.width = 560;
+                      canvas.height = 560;
+                      const ctx = canvas.getContext('2d');
+                      if (ctx) {
+                        const gradient = ctx.createLinearGradient(0, 0, 560, 560);
+                        gradient.addColorStop(0, '#e0f2fe');
+                        gradient.addColorStop(1, '#f1f5f9');
+                        ctx.fillStyle = gradient;
+                        ctx.fillRect(0, 0, 560, 560);
+                        ctx.fillStyle = '#0ea5e9';
+                        ctx.font = 'bold 130px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('KM', 280, 280);
+                        (e.target as HTMLImageElement).src = canvas.toDataURL();
+                      }
+                    }}
+                  />
+                </div>
               </div>
             </motion.div>
           </motion.div>
