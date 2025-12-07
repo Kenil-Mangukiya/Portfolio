@@ -1,214 +1,186 @@
-import { motion } from 'framer-motion';
-import { Code, MessageCircle, ShoppingCart, BriefcaseBusiness, GraduationCap, Cloud } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  Code,
+  MessageCircle,
+  ShoppingCart,
+  Cloud,
+  GraduationCap,
+  BriefcaseBusiness,
+} from "lucide-react";
 
 const About = () => {
   const highlightCards = [
     {
       icon: Code,
-      title: 'MERN Stack Expertise',
-      description: 'Building scalable full-stack applications using MongoDB, Express, React, and Node.js. Specializing in clean architecture, reusable component design, and optimized backend logic. Delivering high-performance, modern web solutions tailored for real-world business needs.',
+      title: "MERN Stack Expertise",
+      description:
+        "Building scalable full-stack applications using MongoDB, Express, React, and Node.js. Specializing in clean architecture, reusable component design, and optimized backend logic.",
     },
     {
       icon: MessageCircle,
-      title: 'AI & Voice Agent Systems',
-      description: 'Developing intelligent automation, conversational agents, and voice-driven systems using advanced AI technologies. Integrating LLMs, workflow engines, and real-time APIs to create seamless automated experiences. Helping businesses scale operations faster with human-like automation and smart decision-making.',
+      title: "AI & Voice Agent Systems",
+      description:
+        "Developing intelligent automation, conversational agents, and voice-driven systems using advanced AI technologies like LLMs, workflow engines, and real-time APIs.",
     },
     {
       icon: ShoppingCart,
-      title: 'E-Commerce & Product Development',
-      description: 'Creating complete e-commerce solutions with secure architecture, smooth UX, and scalable backend systems. Implementing payment integrations, product management, and optimized checkout flows. Delivering fast, reliable, end-to-end platforms that support business growth and customer engagement.',
+      title: "E-Commerce & Product Development",
+      description:
+        "Creating e-commerce solutions with secure backend systems, smooth UX, payment integrations, optimized checkout flows, and scalable product architectures.",
     },
     {
       icon: Cloud,
-      title: 'Cloud Development & DevOps',
-      description: 'Deploying production-grade applications using DigitalOcean, GoDaddy, NGINX, PM2, and cloud best practices. Setting up SSL, reverse proxies, CI/CD pipelines, and robust server management for high uptime. Ensuring smooth, scalable, and secure deployments built for real-world enterprise environments.',
+      title: "Cloud Development & DevOps",
+      description:
+        "Deploying production-grade applications using DigitalOcean, GoDaddy, NGINX, PM2, SSL, CI/CD pipelines, and robust server management.",
     },
   ];
 
-  const timelineItems = [
+  const timeline = [
     {
-      title: 'Full Stack Developer',
-      company: 'Yogreet Global LLP',
-      period: 'October 2024 – Present',
-      description: 'As a Full Stack Developer, I build and deploy modern, scalable, and high-performance applications. I work across frontend, backend, AI integrations, and automation pipelines, helping deliver seamless digital products.',
-      icon: null,
+      title: "Full Stack Developer",
+      company: "Yogreet Global LLP",
+      period: "October 2024 – Present",
+      desc: "Building and deploying modern, scalable digital systems with AI workflows and automation pipelines.",
       isJob: true,
     },
     {
-      title: 'n8n Developer',
-      company: 'NextGen Digital Solutions',
-      period: 'June 2023 – March 2024',
-      description: 'As the lead n8n Automation Expert, I architected the company\'s core automation infrastructure. I designed efficient workflow systems, automated business processes, integrated APIs, and reduced operational overhead significantly.',
-      icon: null,
+      title: "n8n Developer",
+      company: "NextGen Digital Solutions",
+      period: "June 2023 – March 2024",
+      desc: "Designed core workflow automation, integrated APIs, and improved operational efficiency.",
       isJob: true,
     },
     {
-      title: 'BCA Student',
-      company: 'SDJ International College',
-      period: '2023 – 2026',
-      description: 'Currently pursuing Bachelor of Computer Applications, focusing on modern web technologies, software development, and real-world project implementation.',
-      icon: '/images.jpg',
+      title: "BCA Student",
+      company: "SDJ International College",
+      period: "2023 – 2026",
+      desc: "Learning software engineering principles and real-world project development.",
       isJob: false,
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.22,
-        duration: 0.8,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8 },
-    },
-  };
-
   return (
-    <section id="expertise" className="pt-3  bg-white dark:bg-neutral-50">
-      <div className="max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Two-column responsive grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* LEFT COLUMN: About Me + Highlight Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8 pb-8 lg:pb-12"
-          >
-            {/* Section Title + reduced-width text block */}
-            <div className="max-w-[85%] lg:max-w-[580px]">
-              <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-900 mb-6">
-                Expertise & Experience
-              </h2>
-            </div>
+    <section
+      id="expertise"
+      className="
+      pt-20 pb-24
+      bg-[#f9fbff] dark:bg-[#0c1117]
+      transition-all duration-300
+    "
+    >
+      <div className="max-w-[1450px] mx-auto px-6">
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          {/* LEFT COLUMN */}
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-10">
+              Expertise & Experience
+            </h2>
 
-            {/* Highlight Cards - consistent spacing, padding and staggered animation */}
-            <motion.div
-              className="mt-6 space-y-6"
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ staggerChildren: 0.12 }}
-            >
-              {highlightCards.map((card, index) => {
+            <div className="space-y-6">
+              {highlightCards.map((card, i) => {
                 const Icon = card.icon;
+
                 return (
                   <motion.div
-                    key={card.title}
+                    key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.12 }}
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    className="flex items-start gap-4 p-5 bg-white dark:bg-white rounded-xl border border-neutral-200 dark:border-neutral-300 shadow-sm hover:shadow-lg transition-all duration-300"
+                    className="
+                      flex items-start gap-5 p-6 rounded-xl
+                      bg-white dark:bg-[#0d1117]
+                      border border-neutral-200 dark:border-neutral-800
+                      shadow-sm hover:shadow-lg transition-all
+                    "
                   >
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-white" />
+                    {/* FIXED ICON — PERFECT CIRCLE + GLOW */}
+                    <div
+                      className="
+                        w-16 h-8 rounded-full
+                        flex items-center justify-center
+                        bg-blue-600 text-white
+                        shadow-[0_0_18px_rgba(59,130,246,0.8)]
+                      "
+                    >
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-900 mb-1">
+
+                    <div>
+                      <h3 className="font-semibold text-neutral-900 dark:text-white">
                         {card.title}
                       </h3>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-600 leading-relaxed whitespace-pre-line">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 leading-relaxed">
                         {card.description}
                       </p>
                     </div>
                   </motion.div>
                 );
               })}
-            </motion.div>
-          </motion.div>
-
-          {/* RIGHT COLUMN: Experience Timeline */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            {/* Career Journey Subtitle */}
-            <div className="pl-12 mb-4 mt-8">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                Career Journey
-              </h3>
             </div>
+          </div>
 
-            {/* Vertical line on the left */}
-            <div className="absolute left-4 top-24 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700"></div>
+          {/* RIGHT TIMELINE */}
+          <div className="relative pt-16">
+            <h3 className="text-sm font-semibold text-neutral-600 dark:text-neutral-400 mb-6 pl-10">
+              CAREER JOURNEY
+            </h3>
 
-            {/* Timeline items with stagger animation */}
+            {/* FIXED TIMELINE LINE */}
             <motion.div
-              className="space-y-10 pl-12"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
+              initial={{ height: 0 }}
+              whileInView={{ height: "92%" }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
               viewport={{ once: true }}
-            >
-              {timelineItems.map((item, index) => (
+              className="
+                absolute left-5 top-24 w-[2px]
+                bg-neutral-300 dark:bg-neutral-700
+                rounded-full
+              "
+            ></motion.div>
+
+            <div className="space-y-12 pl-12">
+              {timeline.map((item, index) => (
                 <motion.div
                   key={index}
-                  variants={itemVariants}
-                  className="relative"
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="
+                    relative p-6 rounded-xl
+                    bg-white dark:bg-[#0d1117]
+                    border border-neutral-200 dark:border-neutral-800
+                    shadow-sm hover:shadow-md transition-all
+                  "
                 >
-                  {/* Circular marker */}
-                  <div className="absolute -left-8 top-0 w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-4 border-white dark:border-neutral-50 shadow-md z-10"></div>
+                  {/* MARKER DOT */}
+                  <div
+                    className="
+                      absolute -left-[38px] top-7
+                      w-5 h-5 rounded-full
+                      bg-blue-600 shadow-[0_0_12px_rgba(59,130,246,0.8)]
+                      border-4 border-white dark:border-[#0d1117]
+                    "
+                  ></div>
 
-                  {/* Timeline content card */}
-                  <div className="bg-white dark:bg-white rounded-xl border border-neutral-200 dark:border-neutral-300 shadow-sm hover:shadow-md transition-shadow p-5">
-                    <div className="flex items-start gap-3 mb-2">
-                      {/* Icon for job or education */}
-                      <div className="flex-shrink-0 pt-0.5">
-                        {item.isJob ? (
-                          <BriefcaseBusiness className="w-5 h-5 text-blue-600" />
-                        ) : (
-                          <div className="flex items-center">
-                            {item.icon ? (
-                              <img
-                                src={item.icon}
-                                alt={item.company}
-                                className="w-5 h-5 rounded-sm object-cover"
-                              />
-                            ) : (
-                              <GraduationCap className="w-5 h-5 text-blue-600" />
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Title and company */}
-                      <div className="flex-1">
-                        <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-900">
-                          {item.title}
-                        </h3>
-                        <p className="text-xs font-medium text-blue-600 dark:text-blue-600 mt-0.5">
-                          {item.company}
-                        </p>
-                      </div>
-                    </div>
-
-                    <p className="text-xs text-neutral-500 dark:text-neutral-500 mb-2.5 font-medium">
-                      {item.period}
-                    </p>
-
-                    <p className="text-sm text-neutral-600 dark:text-neutral-700 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
+                  {/* CONTENT */}
+                  <h3 className="font-semibold text-neutral-900 dark:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-blue-600 mt-0.5">{item.company}</p>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">
+                    {item.period}
+                  </p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-3 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </motion.div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

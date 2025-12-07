@@ -1,0 +1,17 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html:not(.dark) body {
+  background: linear-gradient(to bottom, #ffffff, #f4f7ff); /* Light elegant bg */
+}
+
+html.dark body {
+  background-color: #0d0d0d; /* Dark */
+}
+
+body {
+  background-color: #F7F9FC; /* Light premium base */
+}
+
