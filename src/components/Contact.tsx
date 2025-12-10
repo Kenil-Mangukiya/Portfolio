@@ -60,7 +60,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-neutral-50">
+    <section id="contact" className="pt-24 pb-24 bg-white dark:bg-neutral-50">
       <div className="max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

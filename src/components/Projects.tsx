@@ -4,7 +4,7 @@ import ProjectCard from './ProjectCard';
 
 const Projects = () => {
   return (
-    <section id="projects" className="pt-20 bg-white dark:bg-neutral-950">
+    <section id="projects" className="pt-24 pb-24 bg-white dark:bg-neutral-950">
       <div className="max-w-[1450px] mx-auto pt- sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
